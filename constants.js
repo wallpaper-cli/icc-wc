@@ -1,4 +1,4 @@
-const webLink = 'https://www.iplt20.com/stats/2019'
+const webLink = 'https://www.cricketworldcup.com/standings'
 
 module.exports = {
     webLink

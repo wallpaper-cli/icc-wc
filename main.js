@@ -5,15 +5,15 @@ const getScores = require('./scores')
 const mocks = require('./mocks')
 
 const removeExistingFile = process.platform === 'win32'
-    ? 'del *.png'
-    : 'rm -rf [0-9]*.png';
-const xList = [1950, 2100, 2480, 2620, 2750, 2860, 3100]
-const file = `${new Date().getTime()}.png`;
+    ? 'del *.jpg'
+    : 'rm -rf [0-9]*.jpg';
+const xList = [1870, 1800, 2050, 2490, 2630, 2760, 2870, 3110]
+const file = `${new Date().getTime()}.jpg`;
 
 const writeRowForEachTeam = async (image, font, x, y, teamInfo) => {
     try {
-        const logo = await Jimp.read(`./Assets/Logos/${teamInfo.name.toLowerCase()}.png`)
-        image.composite(logo.resize(Jimp.AUTO, 80), x[0], y)
+        const logo = await Jimp.read(`./Assets/Logos/${teamInfo.name.toLowerCase()}.jpg`)
+        image.composite(logo.resize(Jimp.AUTO, 80), x[0], y - 24)
         Object.keys(teamInfo).map((eachColum, index) => {
             return image.print(font, x[index + 1], y, teamInfo[eachColum])
         })
@@ -28,9 +28,9 @@ const writeRowForEachTeam = async (image, font, x, y, teamInfo) => {
 const createTableFromTemplate = async (teamDetails) => {
     const differenceBetweenRows = 160
     let image = await Jimp.read('./Assets/Template/template.png')
-    const font = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE)
+    const font = await Jimp.loadFont(Jimp.FONT_SANS_32_WHITE)
     const waitForImageToWrite = teamDetails.map(async (eachTeam, index) => {
-        return await writeRowForEachTeam(image, font, xList, 475 + differenceBetweenRows * index, eachTeam)
+        return await writeRowForEachTeam(image, font, xList, 385 + differenceBetweenRows * index, eachTeam)
     })
     await Promise.all(waitForImageToWrite)
     console.log('writing final file- ', file);
