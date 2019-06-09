@@ -1,4 +1,4 @@
-This app sets the Wallpaper of the system from fetching data from 'https://www.iplt20.com/stats/2019'.
+This app sets the Wallpaper of the system from fetching data from 'https://www.cricketworldcup.com/standings'.
 
 ### Steps to setup 
 * Clone the repo and run `npm i` to install all the dependencies
@@ -12,4 +12,4 @@ This app sets the Wallpaper of the system from fetching data from 'https://www.i
 
 Here is a sample Desktop background that is generated
 
-![Sample desktop](./Assets/Sample.png)
+![Sample desktop](./Assets/Sample.jpg)
