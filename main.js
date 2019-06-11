@@ -8,7 +8,9 @@ const { fixtures, months } = require('./constants')
 const removeExistingFile = process.platform === 'win32'
     ? 'del *.jpg'
     : 'rm -rf [0-9]*.jpg';
-const xList = [1870, 1800, 2050, 2490, 2630, 2760, 2870, 3110]
+// const xList = [1870, 1800, 2050, 2490, 2630, 2760, 2870, 3110]
+const xGap = [70, 0, 250, 690, 830, 960, 1070, 1310]
+const xList = xGap.map(xCord => xCord + 950)
 const file = `${new Date().getTime()}.jpg`;
 
 const nextMatch = async (image, font, matchList) => {
@@ -24,10 +26,10 @@ const nextMatch = async (image, font, matchList) => {
         match = todayMatches[0]
     const team1Logo = await Jimp.read(`./Assets/Logos/${match.team1.toLowerCase()}.jpg`)
     const team2Logo = await Jimp.read(`./Assets/Logos/${match.team2.toLowerCase()}.jpg`)
-    image.composite(team1Logo.resize(Jimp.AUTO, 160), 200, 1000)
-    image.print(font, 200, 1180, match.team1.toUpperCase())
-    image.composite(team2Logo.resize(Jimp.AUTO, 160), 200, 1500)
-    image.print(font, 200, 1680, match.team2.toUpperCase())
+    image.composite(team1Logo.resize(Jimp.AUTO, 160), 320, 1000)
+    image.print(font, 320, 1180, match.team1.toUpperCase())
+    image.composite(team2Logo.resize(Jimp.AUTO, 160), 320, 1500)
+    image.print(font, 320, 1680, match.team2.toUpperCase())
 }
 
 const writeRowForEachTeam = async (image, font, x, y, teamInfo) => {
